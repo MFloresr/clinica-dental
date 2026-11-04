@@ -1,0 +1,44 @@
+{
+  "orden": 5,
+  "nombre": "Ortodoncia",
+  "area": "ortodoncia",
+  "desde": 1800,
+  "unidadPrecio": "tratamiento completo",
+  "foto": "../../assets/fotos/alineador.jpg",
+  "fotoAlt": "Alineador dental transparente sobre una superficie blanca",
+  "resumen": "Alinear los dientes mejora la mordida y la higiene, con aparatos fijos o alineadores transparentes.",
+  "queEs": [
+    "La ortodoncia mueve los dientes poco a poco hasta colocarlos en su sitio. Se puede hacer con aparatos fijos (brackets) o con alineadores transparentes que se quitan para comer y cepillarse.",
+    "No es solo estética: unos dientes bien colocados se limpian mejor y reparten la fuerza de la mordida."
+  ],
+  "cuando": [
+    "Dientes torcidos, apiñados o con huecos.",
+    "Mordida cruzada, abierta o con los dientes de arriba muy adelantados.",
+    "Niños con problemas de desarrollo de la mandíbula.",
+    "Adultos que quieren alinear los dientes. No hay una edad máxima."
+  ],
+  "pasos": [
+    {
+      "titulo": "Estudio",
+      "texto": "Fotos, radiografías y registros para planificar el movimiento."
+    },
+    {
+      "titulo": "Plan y presupuesto",
+      "texto": "Te explicamos las opciones, la duración y el coste por escrito."
+    },
+    {
+      "titulo": "Colocación",
+      "texto": "Ponemos los brackets o te entregamos los primeros alineadores."
+    },
+    {
+      "titulo": "Revisiones y retención",
+      "texto": "Controlamos el avance, y al terminar usas una férula o un retenedor para mantener el resultado."
+    }
+  ],
+  "duracion": "Suele durar entre 12 y 24 meses, según el caso.",
+  "cuidados": [
+    "Cepíllate después de cada comida: los aparatos acumulan placa.",
+    "Con alineadores, llévalos las horas que se te indiquen.",
+    "No abandones la retención: sin ella, los dientes pueden moverse."
+  ]
+}

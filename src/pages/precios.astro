@@ -1,0 +1,92 @@
+---
+import Base from '../layouts/Base.astro';
+import Preguntas from '../components/Preguntas.astro';
+import { getTratamientos } from '../lib/contenido';
+import { sitio } from '../lib/sitio';
+import { euros } from '../lib/util';
+
+const tratamientos = await getTratamientos();
+const { tin, plazoMin, plazoMax } = sitio.financiacion;
+---
+
+<Base titulo="Precios orientativos y financiación" descripcion="Precios desde de los tratamientos dentales y calculadora de financiación. El precio final se da por escrito tras la valoración.">
+  <div class="contenedor cabecera-pagina">
+    <h1>Precios y financiación</h1>
+    <p>Te damos una idea de lo que cuesta cada tratamiento. El precio definitivo lo recibes por escrito, antes de empezar, tras la valoración.</p>
+  </div>
+
+  <section class="seccion" style="padding-top:24px" aria-labelledby="t-precios">
+    <div class="contenedor">
+      <h2 id="t-precios" class="solo-lectores">Precios orientativos</h2>
+      <div class="tabla-envoltorio">
+        <table>
+          <caption class="solo-lectores">Precios orientativos de los tratamientos</caption>
+          <thead><tr><th scope="col">Tratamiento</th><th scope="col">Se cobra</th><th scope="col" class="num">Desde</th></tr></thead>
+          <tbody>
+            {tratamientos.map((t) => (
+              <tr><th scope="row"><a href={`/tratamientos/${t.id}/`} class="enlace">{t.data.nombre}</a></th><td>{t.data.unidadPrecio || 'Según valoración'}</td><td class="num">{t.data.desde ? euros(t.data.desde) : 'Tras la valoración'}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="letra-pequena" style="margin-top:12px">Precios orientativos con IVA cuando proceda. La primera visita incluye exploración y plan de tratamiento. Si hacen falta pruebas adicionales, te lo decimos antes. [El cliente confirma qué incluye y cuánto cuesta la primera visita.]</p>
+    </div>
+  </section>
+
+  <section class="seccion seccion--menta" aria-labelledby="t-fin">
+    <div class="contenedor">
+      <div class="cabecera-seccion"><h2 id="t-fin">Calcula una cuota</h2><p>Si un tratamiento supera lo que quieres pagar de una vez, puedes repartirlo. Esto es solo una simulación.</p></div>
+      <div class="calculadora" id="calculadora" data-tin={tin}>
+        <form class="formulario" onsubmit="return false" aria-label="Datos de la simulación">
+          <div class="campo"><label for="k-importe">Importe del tratamiento (€)</label><input id="k-importe" type="number" min="300" step="50" value="1800" inputmode="numeric" /></div>
+          <div class="campo"><div class="rango"><label for="k-entrada">Entrada</label><output id="k-entrada-v" class="num" for="k-entrada"></output></div><input id="k-entrada" type="range" min="0" max="50" step="5" value="10" /></div>
+          <div class="campo"><div class="rango"><label for="k-plazo">Plazo</label><output id="k-plazo-v" class="num" for="k-plazo"></output></div><input id="k-plazo" type="range" min={plazoMin} max={plazoMax} step="6" value="24" /></div>
+          <p class="letra-pequena" style="margin:0">Cálculo con un TIN de ejemplo del {tin} %. La oferta real depende de la entidad financiera y debe ser aprobada por ella.</p>
+        </form>
+        <div class="resumen-cuota" aria-live="polite">
+          <p style="margin:0;color:#a6c4bf">Tu cuota estimada</p>
+          <p class="grande num" id="k-cuota">0 €</p>
+          <p style="margin:0;color:#a6c4bf">al mes</p>
+          <dl>
+            <div><dt>Importe a financiar</dt><dd id="k-fin">0 €</dd></div>
+            <div><dt>Entrada</dt><dd id="k-ent">0 €</dd></div>
+            <div><dt>Total de intereses</dt><dd id="k-int">0 €</dd></div>
+            <div><dt>Total a pagar</dt><dd id="k-tot">0 €</dd></div>
+          </dl>
+          <p class="letra-pequena" style="margin-top:14px">Información orientativa, sin valor contractual y sujeta a la aprobación de la entidad financiera.</p>
+          <p style="margin:16px 0 0"><a class="btn btn--claro btn--bloque" href="/cita/">Pedir cita de valoración</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" aria-labelledby="t-seguros">
+    <div class="contenedor dos dos--desigual" style="align-items:start">
+      <div>
+        <h2 id="t-seguros">Seguros y mutuas</h2>
+        <p class="texto">Trabajamos con algunas aseguradoras de salud dental. Si tienes seguro, dinos cuál al pedir cita y te confirmamos qué cubre y si hay que pedir autorización antes.</p>
+        <p class="letra-pequena">[El cliente indica aquí con qué aseguradoras concierta.]</p>
+      </div>
+      <Preguntas tema="precios" titulo="Sobre precios y pagos" />
+    </div>
+  </section>
+</Base>
+
+<script>
+  const c = document.getElementById('calculadora');
+  if (c) {
+    const tin = Number(c.dataset.tin);
+    const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+    const eur = (n: number) => `${new Intl.NumberFormat('es-ES', { useGrouping: 'always' }).format(Math.round(n))} €`;
+    const importe = $<HTMLInputElement>('k-importe'), entrada = $<HTMLInputElement>('k-entrada'), plazo = $<HTMLInputElement>('k-plazo');
+    const calcular = () => {
+      const p = Math.max(0, Number(importe.value) || 0), ent = p * (Number(entrada.value) / 100), fin = p - ent, n = Number(plazo.value), i = tin / 100 / 12;
+      const cuota = fin <= 0 ? 0 : i === 0 ? fin / n : (fin * i) / (1 - Math.pow(1 + i, -n));
+      $('k-entrada-v').textContent = `${entrada.value} %`; $('k-plazo-v').textContent = `${plazo.value} meses`;
+      $('k-cuota').textContent = eur(cuota); $('k-fin').textContent = eur(fin); $('k-ent').textContent = eur(ent);
+      $('k-int').textContent = eur(cuota * n - fin); $('k-tot').textContent = eur(cuota * n + ent);
+    };
+    [importe, entrada, plazo].forEach((e) => e.addEventListener('input', calcular));
+    calcular();
+  }
+</script>

@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import GuiaSintomas from '../components/GuiaSintomas.astro';
+---
+
+<Base titulo="¿Qué me pasa? Guía de síntomas dentales" descripcion="Elige lo que notas en tus dientes o encías y te orientamos sobre la urgencia, el tratamiento y qué hacer mientras tanto. Orientación general, no es un diagnóstico.">
+  <div class="contenedor cabecera-pagina">
+    <h1>¿Qué me pasa?</h1>
+    <p>Elige lo que más se parezca a lo que notas. Te decimos con qué prisa conviene verlo y qué puedes hacer mientras tanto.</p>
+  </div>
+  <section class="seccion" style="padding-top:24px">
+    <div class="contenedor"><GuiaSintomas /></div>
+  </section>
+  <section class="cinta"><div class="contenedor"><h2>¿Tu caso no aparece? Llámanos y te orientamos.</h2><a class="btn btn--bosque" href="/cita/">Pedir cita</a></div></section>
+</Base>

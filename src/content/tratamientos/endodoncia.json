@@ -1,0 +1,44 @@
+{
+  "orden": 3,
+  "nombre": "Endodoncia",
+  "area": "general",
+  "desde": 220,
+  "unidadPrecio": "por pieza",
+  "foto": "../../assets/fotos/herramientas-ventana.jpg",
+  "fotoAlt": "Bandeja con instrumental dental junto a una ventana",
+  "resumen": "Cuando la caries llega al nervio, la endodoncia permite conservar el diente en lugar de extraerlo.",
+  "queEs": [
+    "En el interior del diente hay un tejido blando, el nervio o pulpa. Si se infecta o se inflama, produce un dolor intenso. La endodoncia consiste en limpiar ese interior, desinfectarlo y sellarlo.",
+    "El objetivo es conservar tu propio diente, que suele protegerse después con una corona."
+  ],
+  "cuando": [
+    "Dolor fuerte que no se pasa, sobre todo por la noche.",
+    "Sensibilidad prolongada al frío o al calor.",
+    "Un diente que se oscurece tras un golpe.",
+    "Una infección o un absceso en la raíz."
+  ],
+  "pasos": [
+    {
+      "titulo": "Diagnóstico",
+      "texto": "Hacemos una radiografía y pruebas para confirmar qué diente es."
+    },
+    {
+      "titulo": "Anestesia",
+      "texto": "Anestesiamos la zona para que el tratamiento no duela."
+    },
+    {
+      "titulo": "Limpieza de los conductos",
+      "texto": "Retiramos la pulpa dañada y desinfectamos el interior."
+    },
+    {
+      "titulo": "Sellado",
+      "texto": "Rellenamos los conductos y restauramos el diente."
+    }
+  ],
+  "duracion": "Entre 1 y 2 sesiones de 60 a 90 minutos.",
+  "cuidados": [
+    "Puede quedar una molestia leve al morder durante unos días.",
+    "Evita masticar con ese diente hasta que esté restaurado.",
+    "Una endodoncia suele necesitar una corona para proteger el diente."
+  ]
+}

@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Preguntas from '../components/Preguntas.astro';
+import panoramica from '../assets/fotos/panoramica.jpg';
+
+const pasos = [
+  { t: 'Te recibimos y hablamos', x: 'Te preguntamos por tu salud, las enfermedades que tengas, tu medicación y las alergias. También lo que te preocupa o lo que quieres cambiar de tu sonrisa.' },
+  { t: 'Exploramos con calma', x: 'Revisamos dientes, encías, lengua y mordida. Te avisamos antes de cada cosa que hagamos.' },
+  { t: 'Radiografías, si hacen falta', x: 'Solo las que son necesarias para ver lo que no se ve a simple vista. La dosis de radiación es muy baja.' },
+  { t: 'Te explicamos lo que vemos', x: 'Con imágenes y palabras sencillas. Aquí puedes preguntar todo lo que quieras.' },
+  { t: 'Plan y presupuesto por escrito', x: 'Te damos las opciones, el orden, los plazos y el precio. Te lo llevas a casa para pensarlo. No empezamos nada sin tu consentimiento.' },
+];
+const llevar = ['Tu documento de identidad.', 'La tarjeta de tu aseguradora, si tienes.', 'Una lista de la medicación que tomas y de tus alergias.', 'Las radiografías o informes de otras clínicas, si los tienes.'];
+---
+
+<Base titulo="Tu primera visita al dentista" descripcion="Qué pasa en la primera visita, cuánto dura, qué llevar y cómo vamos a tu ritmo si te da miedo el dentista.">
+  <div class="contenedor cabecera-pagina">
+    <h1>Tu primera visita</h1>
+    <p>Dura unos 45 minutos y casi toda es hablar y mirar. Si te da miedo, avísanos: vamos a tu ritmo.</p>
+  </div>
+
+  <section class="seccion" style="padding-top:24px" aria-labelledby="t-pasos">
+    <div class="contenedor dos dos--desigual" style="align-items:start">
+      <div>
+        <h2 id="t-pasos">Qué va a pasar</h2>
+        <ol class="pasos">{pasos.map((p) => <li><strong>{p.t}</strong><p>{p.x}</p></li>)}</ol>
+      </div>
+      <div>
+        <h2>Qué traer</h2>
+        <ul class="lista">{llevar.map((l) => <li>{l}</li>)}</ul>
+        <div class="foto-recta" style="margin-top:20px"><Image src={panoramica} alt="Radiografía panorámica de la boca, en la que se ven todos los dientes" widths={[500, 800]} sizes="(min-width: 900px) 40vw, 100vw" style="aspect-ratio:16/9" /></div>
+        <p class="letra-pequena" style="margin-top:8px">Una radiografía panorámica permite ver todos los dientes y el hueso de una vez.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--menta" aria-labelledby="t-miedo">
+    <div class="contenedor dos">
+      <div>
+        <h2 id="t-miedo">Si te da miedo el dentista</h2>
+        <p class="texto">No eres el único. Cuéntanoslo al pedir cita y lo tendremos en cuenta desde el principio.</p>
+        <ul class="lista">
+          <li>Te explicamos cada paso antes de hacerlo.</li>
+          <li>Pactamos una señal para parar cuando tú quieras.</li>
+          <li>Podemos empezar con visitas cortas y sin tratamientos.</li>
+          <li>Puedes venir acompañado.</li>
+        </ul>
+        <a class="btn" href="/cita/?miedo=1">Pedir cita y avisar de que me da miedo</a>
+      </div>
+      <Preguntas tema="miedo" titulo="Sobre el miedo al dentista" />
+    </div>
+  </section>
+
+  <section class="seccion"><div class="contenedor"><Preguntas tema="primera-visita" titulo="Preguntas sobre la primera visita" /></div></section>
+</Base>

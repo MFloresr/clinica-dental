@@ -1,0 +1,44 @@
+{
+  "orden": 8,
+  "nombre": "Odontopediatría",
+  "area": "infantil",
+  "desde": 40,
+  "unidadPrecio": "la revisión infantil",
+  "foto": "../../assets/fotos/infantil-cartel.jpg",
+  "fotoAlt": "Cartel infantil con dos niños en un columpio en la pared de una consulta dental",
+  "resumen": "Cuidamos los dientes de leche y los primeros definitivos, y enseñamos a los niños a no tener miedo.",
+  "queEs": [
+    "Los dientes de leche guardan el sitio de los definitivos, así que cuidarlos importa. Las visitas infantiles son cortas, tranquilas y con lenguaje adaptado a cada edad.",
+    "Enseñamos al niño los instrumentos antes de usarlos y a ti, a cepillarle bien los dientes."
+  ],
+  "cuando": [
+    "Hacia el primer año de vida, para una primera visita de control.",
+    "Si hay una mancha oscura o dolor en un diente.",
+    "Si usa chupete o se chupa el dedo pasada cierta edad.",
+    "Revisión periódica, como indique el dentista."
+  ],
+  "pasos": [
+    {
+      "titulo": "Conocernos",
+      "texto": "El niño se sienta en el sillón y toca el material sin prisa."
+    },
+    {
+      "titulo": "Revisión",
+      "texto": "Miramos los dientes y las encías con un espejo pequeño."
+    },
+    {
+      "titulo": "Prevención",
+      "texto": "Cuando está indicado, aplicamos flúor o selladores."
+    },
+    {
+      "titulo": "Consejos a la familia",
+      "texto": "Te explicamos higiene, alimentación y hábitos."
+    }
+  ],
+  "duracion": "Entre 20 y 30 minutos.",
+  "cuidados": [
+    "Cepilla los dientes del niño dos veces al día con una cantidad de pasta adecuada a su edad.",
+    "Limita los dulces y los zumos, sobre todo entre comidas.",
+    "No le asustes con el dentista: explícaselo como algo normal."
+  ]
+}

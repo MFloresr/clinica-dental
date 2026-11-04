@@ -1,0 +1,5 @@
+[
+  { "id": "o1", "nombre": "Laura", "contexto": "Primera visita", "texto": "Tenía mucho miedo y me lo dijeron desde el primer momento: pararon cuando se lo pedí y me explicaron todo antes de tocar nada." },
+  { "id": "o2", "nombre": "Joan", "contexto": "Tratamiento de implante", "texto": "Me dieron el presupuesto por escrito, con las fases y los plazos. No hubo sorpresas." },
+  { "id": "o3", "nombre": "Carmen", "contexto": "Visita con su hijo", "texto": "Mi hijo salió contento. Le enseñaron los instrumentos antes y lo dejaron tocarlos." }
+]

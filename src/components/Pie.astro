@@ -1,0 +1,52 @@
+---
+import { menu, sitio } from '../lib/sitio';
+const { direccion: d, centro: c } = sitio;
+---
+
+<footer class="pie">
+  <div class="pie__aviso">Web de demostración: los datos, el equipo y las opiniones son de ejemplo. No se atiende a nadie real.</div>
+  <div class="contenedor pie__contenido">
+    <div class="pie__rejilla">
+      <div>
+        <a class="logo" href="/"><svg class="logo__marca" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="16" fill="#f1f4f3" /><path d="M20 16c-6 0-9 5-8 11 1 5 3 7 4 14 1 6 3 9 6 9 4 0 3-8 6-8s2 8 6 8c3 0 5-3 6-9 1-7 3-9 4-14 1-6-2-11-8-11-4 0-6 2-8 2s-4-2-8-2z" fill="#0f3d3a" /></svg><span translate="no">Dental Alba</span><span class="solo-lectores"> clínica dental, ir al inicio</span></a>
+        <p style="margin-top:14px;max-width:32ch">{sitio.eslogan}.</p>
+        <p>{d.calle}<br />{d.cp} {d.ciudad} ({d.provincia})</p>
+      </div>
+      <div>
+        <h2>Contacto</h2>
+        <ul>
+          <li><a href={`tel:${sitio.telefono}`}>{sitio.telefonoVisible}</a></li>
+          <li><a href={`mailto:${sitio.email}`}>{sitio.email}</a></li>
+          <li><a href={`https://wa.me/${sitio.whatsapp}`}>WhatsApp</a></li>
+          <li><a href="/cita/">Pedir cita</a></li>
+          <li><a href="/urgencias/">Urgencias dentales</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Horario</h2>
+        <ul>
+          {sitio.horarios.map((h) => (
+            <li><strong>{h.etiqueta}</strong><br />{h.tramos.length ? h.tramos.map((t) => `${t.abre} a ${t.cierra}`).join(' y ') : 'Cerrado'}</li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h2>La clínica</h2>
+        <ul>
+          {menu.map((m) => <li><a href={m.href}>{m.texto}</a></li>)}
+          <li><a href="/clinica/">Las instalaciones</a></li>
+          <li><a href="/contacto/">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="pie__sanitario">
+      Centro sanitario con autorización {c.autorizacion}. Dirección sanitaria: {c.director}. Los resultados de los tratamientos pueden variar de una persona a otra; la información de esta web es orientativa y no sustituye la valoración de un dentista.
+    </p>
+    <div class="pie__bajo">
+      <span>© {new Date().getFullYear()} {sitio.nombre}</span>
+      <span>
+        <a href="/aviso-legal/">Aviso legal</a> · <a href="/privacidad/">Privacidad</a> · <a href="/cookies/">Cookies</a> · <a href="/creditos/">Créditos de las fotos</a>
+      </span>
+    </div>
+  </div>
+</footer>

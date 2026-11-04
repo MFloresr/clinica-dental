@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import { getTratamientos } from '../../lib/contenido';
+import { ETIQUETA_AREA, euros } from '../../lib/util';
+
+const tratamientos = await getTratamientos();
+---
+
+<Base titulo="Tratamientos dentales" descripcion="Revisión y limpieza, empastes, endodoncia, implantes, ortodoncia, blanqueamiento, encías y odontopediatría. Qué son, cuándo se recomiendan y cómo se hacen.">
+  <div class="contenedor cabecera-pagina">
+    <h1>Tratamientos</h1>
+    <p>Para cada uno te explicamos qué es, cuándo se recomienda y cómo se hace, sin tecnicismos. Los precios son orientativos; el definitivo te lo damos por escrito tras la valoración.</p>
+  </div>
+  <section class="seccion" style="padding-top:24px">
+    <div class="contenedor">
+      <div class="rejilla">
+        {tratamientos.map((t) => (
+          <article class="trat">
+            <div class="trat__foto"><Image src={t.data.foto} alt={t.data.fotoAlt} widths={[400, 700]} sizes="(min-width: 960px) 24vw, 100vw" /></div>
+            <div class="trat__cuerpo">
+              <span class="etiqueta" style="align-self:flex-start;margin-bottom:10px">{ETIQUETA_AREA[t.data.area]}</span>
+              <h2 style="font-size:1.45rem;margin-bottom:6px"><a href={`/tratamientos/${t.id}/`} style="text-decoration:none">{t.data.nombre}</a></h2>
+              <p>{t.data.resumen}</p>
+              <p class="trat__pie">{t.data.desde ? `Desde ${euros(t.data.desde)} ${t.data.unidadPrecio}` : 'Tras la valoración'}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="letra-pequena" style="margin-top:24px">Precios orientativos con IVA cuando proceda. El precio final depende de cada caso y se entrega por escrito antes de empezar.</p>
+    </div>
+  </section>
+  <section class="cinta"><div class="contenedor"><h2>¿No sabes cuál necesitas? Una valoración te lo dice.</h2><div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn--bosque" href="/cita/">Pedir cita</a><a class="btn btn--sec" href="/que-me-pasa/">¿Qué me pasa?</a></div></div></section>
+</Base>

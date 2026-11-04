@@ -1,0 +1,74 @@
+---
+// "¿Qué me pasa?": orienta sobre la urgencia y el tratamiento según un síntoma. No diagnostica.
+import { getSintomas, getTratamientos } from '../lib/contenido';
+import { URGENCIA } from '../lib/util';
+import { sitio } from '../lib/sitio';
+
+interface Props { compacta?: boolean }
+const { compacta = false } = Astro.props;
+const sintomas = await getSintomas();
+const tratamientos = await getTratamientos();
+const nombres = Object.fromEntries(tratamientos.map((t) => [t.id, t.data.nombre]));
+const datos = sintomas.map((s) => ({
+  id: s.id,
+  urgencia: s.data.urgencia,
+  etiqueta: URGENCIA[s.data.urgencia].etiqueta,
+  accion: URGENCIA[s.data.urgencia].accion,
+  mensaje: s.data.mensaje,
+  mientras: s.data.mientras,
+  tratamiento: s.data.tratamiento,
+  tratamientoNombre: s.data.tratamiento ? nombres[s.data.tratamiento] : null,
+}));
+---
+
+<div class="guia" id="guia" data-sintomas={JSON.stringify(datos)} data-tel={sitio.telefono} data-tel-urgencias={sitio.telefonoUrgencias} data-tel-visible={sitio.telefonoUrgenciasVisible}>
+  <fieldset class="sintomas">
+    <legend class={compacta ? 'solo-lectores' : ''} style="font:650 1.3rem var(--f-titulo);margin-bottom:10px">¿Qué te pasa?</legend>
+    {sintomas.map((s) => (
+      <label class="sintoma"><input type="radio" name="sintoma" value={s.id} /><span>{s.data.sintoma}</span></label>
+    ))}
+  </fieldset>
+
+  <div class="resultado" aria-live="polite" id="resultado">
+    <p class="resultado__vacio" id="resultado-vacio">Elige lo que más se parezca a lo que te pasa y te decimos con qué prisa conviene verlo y qué puedes hacer mientras.</p>
+    <div id="resultado-contenido" hidden>
+      <span class="urgencia" id="r-urgencia"></span>
+      <h3 id="r-titulo"></h3>
+      <p id="r-mensaje"></p>
+      <div id="r-mientras-caja" hidden>
+        <p style="font-weight:700;margin-bottom:6px">Mientras tanto:</p>
+        <ul id="r-mientras"></ul>
+      </div>
+      <div class="resultado__acciones" id="r-acciones"></div>
+    </div>
+    <p class="aviso-medico">Esta guía es orientativa y no sustituye el diagnóstico de un dentista. Si tienes dificultad para respirar o tragar, o una hinchazón que avanza rápido, llama al <strong>112</strong>.</p>
+  </div>
+</div>
+
+<script>
+  const raiz = document.getElementById('guia');
+  if (raiz) {
+    type Dato = { id: string; urgencia: string; etiqueta: string; accion: string; mensaje: string; mientras: string[]; tratamiento: string | null; tratamientoNombre: string | null };
+    const datos: Dato[] = JSON.parse(raiz.dataset.sintomas || '[]');
+    const tel = raiz.dataset.tel!, telUrg = raiz.dataset.telUrgencias!, telUrgVisible = raiz.dataset.telVisible!;
+    const $ = (id: string) => document.getElementById(id)!;
+    const escapar = (t: string) => t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+    const pintar = (id: string) => {
+      const d = datos.find((x) => x.id === id);
+      if (!d) return;
+      $('resultado-vacio').hidden = true;
+      $('resultado-contenido').hidden = false;
+      const u = $('r-urgencia'); u.textContent = d.etiqueta; u.dataset.nivel = d.urgencia;
+      $('r-titulo').textContent = d.urgencia === 'urgente' ? 'Llámanos hoy' : d.urgencia === 'pronto' ? 'Pide cita esta semana' : 'Pide cita cuando te venga bien';
+      $('r-mensaje').textContent = d.mensaje;
+      $('r-mientras-caja').hidden = d.mientras.length === 0;
+      $('r-mientras').innerHTML = d.mientras.map((m) => `<li>${escapar(m)}</li>`).join('');
+      const acciones: string[] = [];
+      if (d.urgencia === 'urgente') acciones.push(`<a class="btn" href="tel:${telUrg}">Llamar a urgencias: ${telUrgVisible}</a>`, `<a class="btn btn--sec" href="/urgencias/">Qué hacer mientras llegas</a>`);
+      else acciones.push(`<a class="btn" href="/cita/?motivo=${encodeURIComponent(d.id)}">Pedir cita</a>`, `<a class="btn btn--sec" href="tel:${tel}">Llamar</a>`);
+      if (d.tratamiento) acciones.push(`<a class="enlace" style="align-self:center" href="/tratamientos/${d.tratamiento}/">Saber más sobre ${escapar(d.tratamientoNombre ?? '')}</a>`);
+      $('r-acciones').innerHTML = acciones.join('');
+    };
+    raiz.addEventListener('change', (e) => { const i = e.target as HTMLInputElement; if (i.name === 'sintoma') pintar(i.value); });
+  }
+</script>

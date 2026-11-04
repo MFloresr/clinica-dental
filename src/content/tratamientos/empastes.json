@@ -1,0 +1,44 @@
+{
+  "orden": 2,
+  "nombre": "Empastes y caries",
+  "area": "general",
+  "desde": 65,
+  "unidadPrecio": "por pieza",
+  "foto": "../../assets/fotos/instrumental-mesa.jpg",
+  "fotoAlt": "Instrumental dental y material de obturación sobre una mesa de trabajo",
+  "resumen": "Si la caries se trata a tiempo, un empaste devuelve al diente su forma y su función.",
+  "queEs": [
+    "La caries es la destrucción del esmalte por las bacterias de la placa. Si se detecta pronto, se limpia la zona dañada y se rellena con un material del color del diente.",
+    "Cuanto antes se trate, menos hay que quitar y menos molesta es la visita."
+  ],
+  "cuando": [
+    "Si tienes una mancha oscura o un agujero en un diente.",
+    "Si te duele al tomar dulce, frío o calor.",
+    "Si se te ha roto un trozo de diente o un empaste antiguo.",
+    "Si el dentista ve una caries en una revisión."
+  ],
+  "pasos": [
+    {
+      "titulo": "Anestesia local",
+      "texto": "Adormecemos la zona para que no notes dolor durante el tratamiento."
+    },
+    {
+      "titulo": "Limpiamos la caries",
+      "texto": "Retiramos solo la parte dañada del diente."
+    },
+    {
+      "titulo": "Rellenamos",
+      "texto": "Colocamos el material en capas y lo endurecemos con una luz especial."
+    },
+    {
+      "titulo": "Ajustamos la mordida",
+      "texto": "Comprobamos que muerdes con comodidad y pulimos."
+    }
+  ],
+  "duracion": "Entre 30 y 45 minutos por pieza.",
+  "cuidados": [
+    "No comas hasta que se te pase la anestesia, para no morderte la mejilla.",
+    "Es normal notar algo de sensibilidad unos días.",
+    "Si al morder notas el empaste alto, avísanos y lo ajustamos."
+  ]
+}

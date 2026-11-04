@@ -1,0 +1,168 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import GuiaSintomas from '../components/GuiaSintomas.astro';
+import AbiertoAhora from '../components/AbiertoAhora.astro';
+import { getTratamientos, getEntradas, getOpiniones } from '../lib/contenido';
+import { sitio } from '../lib/sitio';
+import { euros } from '../lib/util';
+import hero from '../assets/fotos/sillon-nc.jpg';
+import higiene from '../assets/fotos/preparar-herramientas.jpg';
+import esteril from '../assets/fotos/esterilizacion.jpg';
+
+const tratamientos = await getTratamientos();
+const entradas = (await getEntradas()).slice(0, 3);
+const opiniones = await getOpiniones();
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'Dentist',
+  name: sitio.nombre,
+  description: sitio.descripcion,
+  url: sitio.url,
+  telephone: sitio.telefono,
+  email: sitio.email,
+  medicalSpecialty: 'Dentistry',
+  address: { '@type': 'PostalAddress', streetAddress: sitio.direccion.calle, postalCode: sitio.direccion.cp, addressLocality: sitio.direccion.ciudad, addressRegion: sitio.direccion.provincia, addressCountry: 'ES' },
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'], opens: '09:00', closes: '20:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Friday', opens: '09:00', closes: '14:00' },
+  ],
+};
+---
+
+<Base titulo="Clínica dental: revisiones, implantes, ortodoncia y más" jsonld={jsonld}>
+  <section class="hero" aria-labelledby="titulo-hero">
+    <div class="contenedor hero__fila">
+      <div class="hero__texto">
+        <h1 id="titulo-hero">Cuidamos tu sonrisa, sin prisas.</h1>
+        <p>Te explicamos lo que vemos, lo que necesitas y cuánto cuesta, antes de empezar. Y si te da miedo el dentista, cuéntanoslo: vamos a tu ritmo.</p>
+        <div class="hero__acciones">
+          <a class="btn" href="/cita/">Pedir cita</a>
+          <a class="btn btn--sec" href="/que-me-pasa/">¿Qué me pasa?</a>
+        </div>
+        <ul class="datos-rapidos">
+          <li><strong>Primera visita</strong>de valoración y plan por escrito</li>
+          <li><strong>Presupuesto</strong>antes de empezar cada tratamiento</li>
+          <li><strong>Sin sorpresas</strong>no hacemos nada sin tu consentimiento</li>
+        </ul>
+      </div>
+      <div>
+        <div class="hero__foto"><Image src={hero} alt="Sala de tratamiento con un sillón dental y mobiliario de madera" widths={[600, 900, 1300]} sizes="(min-width: 980px) 45vw, 100vw" loading="eager" fetchpriority="high" /></div>
+        <div class="tonos hero__tonos" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" aria-labelledby="t-guia">
+    <div class="contenedor">
+      <div class="cabecera-seccion"><h2 id="t-guia">¿Qué te pasa?</h2><p>Dinos qué notas y te orientamos sobre la prisa que hay y qué puedes hacer mientras.</p></div>
+      <GuiaSintomas compacta />
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca" aria-labelledby="t-trat">
+    <div class="contenedor">
+      <div class="cabecera-seccion"><h2 id="t-trat">Tratamientos</h2><a class="enlace" href="/tratamientos/">Ver todos</a></div>
+      <div class="rejilla">
+        {tratamientos.slice(0, 4).map((t) => (
+          <article class="trat">
+            <div class="trat__foto"><Image src={t.data.foto} alt={t.data.fotoAlt} widths={[400, 700]} sizes="(min-width: 960px) 24vw, 100vw" /></div>
+            <div class="trat__cuerpo">
+              <h3><a href={`/tratamientos/${t.id}/`}>{t.data.nombre}</a></h3>
+              <p>{t.data.resumen}</p>
+              <p class="trat__pie">{t.data.desde ? `Desde ${euros(t.data.desde)}` : 'Tras la valoración'}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--bosque" aria-labelledby="t-visita">
+    <div class="contenedor dos dos--desigual">
+      <div>
+        <h2 id="t-visita">Tu primera visita, paso a paso</h2>
+        <p class="texto gris">Sabemos que es lo que más cuesta. Por eso te contamos qué va a pasar antes de venir.</p>
+        <ul class="lista">
+          <li>Hablamos contigo y revisamos tu historial y tu medicación.</li>
+          <li>Exploramos dientes y encías, y hacemos radiografías solo si hacen falta.</li>
+          <li>Te explicamos lo que hemos visto con imágenes y palabras sencillas.</li>
+          <li>Recibes un plan y un presupuesto por escrito. Decides tú.</li>
+        </ul>
+        <a class="btn btn--claro" href="/primera-visita/">Cómo es la primera visita</a>
+      </div>
+      <div class="foto-recta"><Image src={higiene} alt="Manos con guantes preparando instrumental sobre la bandeja de un sillón dental" widths={[500, 800, 1100]} sizes="(min-width: 900px) 40vw, 100vw" /></div>
+    </div>
+  </section>
+
+  <section class="seccion" aria-labelledby="t-seguridad">
+    <div class="contenedor dos">
+      <div class="foto-recta"><Image src={esteril} alt="Instrumental dental esterilizado y envasado en bolsas selladas sobre una bandeja" widths={[500, 800, 1100]} sizes="(min-width: 900px) 45vw, 100vw" /></div>
+      <div>
+        <h2 id="t-seguridad">Seguridad e higiene</h2>
+        <p class="texto">El instrumental reutilizable se esteriliza y se guarda envasado hasta el momento de usarlo. Cuando es posible, empleamos material desechable.</p>
+        <ul class="lista">
+          <li>Instrumental envasado y esterilizado.</li>
+          <li>Material de un solo uso cuando procede.</li>
+          <li>Radiología digital con la mínima exposición necesaria.</li>
+        </ul>
+        <a class="btn btn--sec" href="/clinica/">Conoce la clínica</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--menta" aria-labelledby="t-opiniones">
+    <div class="contenedor">
+      <div class="cabecera-seccion"><h2 id="t-opiniones">Lo que cuentan los pacientes</h2></div>
+      <div class="opiniones">
+        {opiniones.map((o) => (
+          <figure class="opinion"><blockquote>“{o.data.texto}”</blockquote><figcaption><strong>{o.data.nombre}</strong>{o.data.contexto}</figcaption></figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" aria-labelledby="t-blog">
+    <div class="contenedor">
+      <div class="cabecera-seccion"><h2 id="t-blog">Consejos de salud bucodental</h2><a class="enlace" href="/blog/">Ver todos los artículos</a></div>
+      <div class="entradas">
+        {entradas.map((e) => (
+          <article class="entrada">
+            <Image src={e.data.foto} alt={e.data.fotoAlt} widths={[400, 700]} sizes="(min-width: 960px) 30vw, 100vw" />
+            <div class="entrada__cuerpo">
+              <p class="entrada__meta">{e.data.categoria} · {e.data.minutos} min de lectura</p>
+              <h3><a href={`/blog/${e.id}/`}>{e.data.titulo}</a></h3>
+              <p>{e.data.resumen}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cinta" aria-labelledby="t-cinta">
+    <div class="contenedor">
+      <h2 id="t-cinta">¿Hace tiempo que no vas al dentista? Una revisión lo aclara.</h2>
+      <a class="btn btn--bosque" href="/cita/">Pedir cita</a>
+    </div>
+  </section>
+
+  <section class="seccion" aria-labelledby="t-donde">
+    <div class="contenedor dos">
+      <div>
+        <h2 id="t-donde">Dónde estamos</h2>
+        <p><AbiertoAhora /></p>
+        <p>{sitio.direccion.calle}<br />{sitio.direccion.cp} {sitio.direccion.ciudad} ({sitio.direccion.provincia})</p>
+        <p>Teléfono: <a class="enlace" href={`tel:${sitio.telefono}`}>{sitio.telefonoVisible}</a></p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="/cita/">Pedir cita</a><a class="btn btn--sec" href="/contacto/">Cómo llegar</a></div>
+      </div>
+      <div class="tabla-envoltorio">
+        <table>
+          <caption class="solo-lectores">Horario de la clínica</caption>
+          <thead><tr><th scope="col">Día</th><th scope="col">Horario</th></tr></thead>
+          <tbody>{sitio.horarios.map((h) => <tr><th scope="row">{h.etiqueta}</th><td class="num">{h.tramos.length ? h.tramos.map((t) => `${t.abre} a ${t.cierra}`).join(' y ') : 'Cerrado'}</td></tr>)}</tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</Base>

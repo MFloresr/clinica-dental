@@ -1,0 +1,43 @@
+{
+  "orden": 4,
+  "nombre": "Implantes dentales",
+  "area": "cirugia",
+  "desde": 1300,
+  "unidadPrecio": "implante con corona",
+  "foto": "../../assets/fotos/implantes.jpg",
+  "fotoAlt": "Manos sosteniendo un modelo de arcada dental con un implante",
+  "resumen": "Una forma de reponer un diente ausente con un tornillo de titanio en el hueso y una corona encima.",
+  "queEs": [
+    "Un implante es una pieza de titanio que se coloca en el hueso de la mandíbula y hace de raíz. Una vez integrada, se coloca encima una corona con la forma y el color de un diente.",
+    "No todas las bocas son candidatas: hace falta suficiente hueso y encías sanas. Lo valoramos con una exploración y una radiografía en 3D."
+  ],
+  "cuando": [
+    "Te falta uno o varios dientes.",
+    "Llevas una prótesis removible y quieres una opción fija.",
+    "Quieres evitar tallar los dientes vecinos, como ocurre con un puente."
+  ],
+  "pasos": [
+    {
+      "titulo": "Estudio",
+      "texto": "Exploración, radiografías y un plan por escrito con fases y plazos."
+    },
+    {
+      "titulo": "Colocación del implante",
+      "texto": "Con anestesia local, se coloca el implante en el hueso."
+    },
+    {
+      "titulo": "Cicatrización",
+      "texto": "El hueso se integra con el implante durante unos meses, según cada caso."
+    },
+    {
+      "titulo": "Corona",
+      "texto": "Colocamos la corona definitiva y ajustamos la mordida."
+    }
+  ],
+  "duracion": "Varios meses entre la colocación y la corona, según el caso.",
+  "cuidados": [
+    "Tras la cirugía, sigue las pautas de medicación y alimentación que te demos.",
+    "No fumes durante la cicatrización: dificulta que el implante se integre.",
+    "Higiene cuidadosa y revisiones periódicas durante toda la vida del implante."
+  ]
+}

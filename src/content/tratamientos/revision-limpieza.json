@@ -1,0 +1,44 @@
+{
+  "orden": 1,
+  "nombre": "Revisión y limpieza",
+  "area": "general",
+  "desde": 60,
+  "unidadPrecio": "la revisión con limpieza",
+  "foto": "../../assets/fotos/cepillo.jpg",
+  "fotoAlt": "Cepillo de dientes amarillo con pasta de varios colores sobre fondo blanco",
+  "resumen": "La visita que evita los problemas grandes: exploramos, limpiamos el sarro y te explicamos cómo cuidarte en casa.",
+  "queEs": [
+    "Una revisión es una exploración completa de dientes, encías, lengua y mordida. Sirve para detectar caries, problemas de encías o desgastes antes de que den la cara.",
+    "La limpieza elimina el sarro y las manchas que el cepillo no quita. Se hace con ultrasonidos y se termina con un pulido."
+  ],
+  "cuando": [
+    "Una vez al año como mínimo, aunque no te duela nada.",
+    "Si hace tiempo que no vas al dentista.",
+    "Si notas sarro, mal aliento o manchas.",
+    "Antes de empezar un tratamiento de ortodoncia o de blanqueamiento."
+  ],
+  "pasos": [
+    {
+      "titulo": "Hablamos",
+      "texto": "Te preguntamos por tu salud, tu medicación y lo que te preocupa."
+    },
+    {
+      "titulo": "Exploramos",
+      "texto": "Revisamos cada diente y las encías, y hacemos radiografías solo si son necesarias."
+    },
+    {
+      "titulo": "Limpiamos",
+      "texto": "Quitamos el sarro con ultrasonidos y pulimos la superficie."
+    },
+    {
+      "titulo": "Te explicamos",
+      "texto": "Te decimos qué hemos visto y cómo mejorar tu higiene en casa."
+    }
+  ],
+  "duracion": "Entre 30 y 60 minutos.",
+  "cuidados": [
+    "Puede haber una ligera sensibilidad en los días siguientes.",
+    "Cepíllate con suavidad y usa hilo o cepillos interdentales.",
+    "Si te sangran las encías, no dejes de limpiarlas: suele mejorar en pocos días."
+  ]
+}

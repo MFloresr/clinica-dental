@@ -1,0 +1,6 @@
+[
+  { "id": "roca", "nombre": "Dra. Marta Roca", "cargo": "Directora sanitaria", "especialidad": "Odontología general", "texto": "Se ocupa de las revisiones, los empastes y la valoración inicial. Te explica cada paso antes de empezar." },
+  { "id": "vila", "nombre": "Dr. Pere Vila", "cargo": "Odontólogo", "especialidad": "Cirugía e implantes", "texto": "Coloca implantes y hace las extracciones complicadas. Planifica cada caso con imágenes antes de intervenir." },
+  { "id": "serra", "nombre": "Dra. Júlia Serra", "cargo": "Odontóloga", "especialidad": "Ortodoncia y odontopediatría", "texto": "Trabaja con niños y adultos que quieren alinear los dientes, con aparatos fijos o transparentes." },
+  { "id": "costa", "nombre": "Anna Costa", "cargo": "Higienista dental", "especialidad": "Higiene y prevención", "texto": "Hace las limpiezas y te enseña la técnica de cepillado que mejor te funciona." }
+]

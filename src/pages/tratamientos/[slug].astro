@@ -1,0 +1,78 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import { getTratamientos } from '../../lib/contenido';
+import { sitio } from '../../lib/sitio';
+import { ETIQUETA_AREA, euros } from '../../lib/util';
+
+export async function getStaticPaths() {
+  const tratamientos = await getTratamientos();
+  return tratamientos.map((tratamiento) => ({ params: { slug: tratamiento.id }, props: { tratamiento } }));
+}
+
+const { tratamiento } = Astro.props;
+const d = tratamiento.data;
+const otros = (await getTratamientos()).filter((t) => t.id !== tratamiento.id).slice(0, 3);
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: d.nombre,
+  description: d.resumen,
+  about: { '@type': 'MedicalProcedure', name: d.nombre },
+  publisher: { '@type': 'Dentist', name: sitio.nombre },
+};
+---
+
+<Base titulo={d.nombre} descripcion={`${d.nombre}: ${d.resumen}`} jsonld={jsonld}>
+  <div class="contenedor">
+    <nav class="migas" aria-label="Migas de pan"><a href="/">Inicio</a> / <a href="/tratamientos/">Tratamientos</a> / <span aria-current="page">{d.nombre}</span></nav>
+    <header class="cabecera-pagina" style="padding-bottom:0">
+      <span class="etiqueta" style="margin-bottom:12px">{ETIQUETA_AREA[d.area]}</span>
+      <h1>{d.nombre}</h1>
+      <p>{d.resumen}</p>
+    </header>
+
+    <div class="trat-ficha">
+      <div>
+        <div class="foto-recta" style="max-height:440px"><Image src={d.foto} alt={d.fotoAlt} widths={[600, 900, 1300]} sizes="(min-width: 960px) 60vw, 100vw" loading="eager" fetchpriority="high" /></div>
+
+        <h2 style="margin-top:1.4em">Qué es</h2>
+        {d.queEs.map((p) => <p class="texto">{p}</p>)}
+
+        <h2 style="margin-top:1.2em">Cuándo se recomienda</h2>
+        <ul class="lista">{d.cuando.map((c) => <li>{c}</li>)}</ul>
+
+        <h2 style="margin-top:1.2em">Cómo se hace</h2>
+        <ol class="pasos">{d.pasos.map((p) => <li><strong>{p.titulo}</strong><p>{p.texto}</p></li>)}</ol>
+
+        <h2 style="margin-top:1.2em">Después del tratamiento</h2>
+        <ul class="lista">{d.cuidados.map((c) => <li>{c}</li>)}</ul>
+        <p class="aviso-medico" style="max-width:64ch">Información general y orientativa. Cada caso es distinto y lo valora el dentista tras explorarte. Los resultados pueden variar de una persona a otra.</p>
+      </div>
+
+      <aside class="lateral" aria-label="Resumen y cita">
+        <dl>
+          <div><dt>Duración</dt><dd>{d.duracion}</dd></div>
+          <div><dt>Precio orientativo</dt><dd class="num">{d.desde ? `Desde ${euros(d.desde)}` : 'Tras la valoración'}{d.desde && <span class="letra-pequena" style="display:block;font-family:var(--f-texto);font-weight:400">{d.unidadPrecio}. El precio final se da por escrito tras la valoración.</span>}</dd></div>
+          <div><dt>Primera visita</dt><dd>Valoración y plan por escrito</dd></div>
+        </dl>
+        <a class="btn btn--bloque" href={`/cita/?tratamiento=${tratamiento.id}`}>Pedir cita para esto</a>
+        <p style="margin:12px 0 0;text-align:center"><a class="enlace" href={`tel:${sitio.telefono}`}>O llámanos: {sitio.telefonoVisible}</a></p>
+      </aside>
+    </div>
+  </div>
+
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="cabecera-seccion"><h2>Otros tratamientos</h2><a class="enlace" href="/tratamientos/">Ver todos</a></div>
+      <div class="rejilla">
+        {otros.map((t) => (
+          <article class="trat">
+            <div class="trat__foto"><Image src={t.data.foto} alt={t.data.fotoAlt} widths={[400, 700]} sizes="(min-width: 960px) 30vw, 100vw" /></div>
+            <div class="trat__cuerpo"><h3><a href={`/tratamientos/${t.id}/`}>{t.data.nombre}</a></h3><p>{t.data.resumen}</p></div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

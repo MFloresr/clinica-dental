@@ -1,0 +1,44 @@
+{
+  "orden": 7,
+  "nombre": "Periodoncia: cuidado de las encías",
+  "area": "general",
+  "desde": 90,
+  "unidadPrecio": "por sesión",
+  "foto": "../../assets/fotos/interdental.jpg",
+  "fotoAlt": "Dos cepillos interdentales azul y amarillo dentro de un vaso",
+  "resumen": "Tratamos la inflamación de las encías y la pérdida de hueso para conservar tus dientes.",
+  "queEs": [
+    "Las encías inflamadas que sangran son la primera señal de gingivitis. Si no se trata, puede avanzar a periodontitis, que destruye el hueso que sujeta los dientes.",
+    "La buena noticia es que la gingivitis se revierte con una limpieza profesional y una mejor higiene en casa."
+  ],
+  "cuando": [
+    "Las encías sangran al cepillarte o se ven rojas e hinchadas.",
+    "Notas mal aliento persistente.",
+    "Los dientes se ven más largos o se mueven.",
+    "Tienes antecedentes familiares de problemas de encías, o fumas."
+  ],
+  "pasos": [
+    {
+      "titulo": "Exploración",
+      "texto": "Medimos la profundidad de las encías alrededor de cada diente."
+    },
+    {
+      "titulo": "Limpieza profunda",
+      "texto": "Quitamos el sarro bajo la encía y alisamos la superficie de la raíz."
+    },
+    {
+      "titulo": "Enseñanza de higiene",
+      "texto": "Te mostramos la técnica y los instrumentos que mejor te van."
+    },
+    {
+      "titulo": "Mantenimiento",
+      "texto": "Revisiones periódicas para mantener las encías estables."
+    }
+  ],
+  "duracion": "Entre 1 y 4 sesiones, según la extensión.",
+  "cuidados": [
+    "Las encías pueden estar sensibles unos días tras la limpieza.",
+    "Usa un cepillo suave y limpia entre los dientes a diario.",
+    "Si fumas, dejarlo mejora mucho el pronóstico."
+  ]
+}

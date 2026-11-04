@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { getEquipo } from '../lib/contenido';
+
+const equipo = await getEquipo();
+const iniciales = (n: string) => n.replace(/^(Dra?\.)\s+/, '').split(' ').map((p) => p[0]).join('');
+---
+
+<Base titulo="Nuestro equipo" descripcion="Dentistas e higienista de la clínica: especialidades y cómo trabajamos.">
+  <div class="contenedor cabecera-pagina">
+    <h1>Nuestro equipo</h1>
+    <p>Profesionales titulados y colegiados. Te explicamos cada paso y nos coordinamos entre nosotros para que no repitas tu historia en cada visita.</p>
+  </div>
+  <section class="seccion" style="padding-top:24px">
+    <div class="contenedor">
+      <div class="equipo">
+        {equipo.map((p) => (
+          <article class="persona">
+            <span class="persona__iniciales" aria-hidden="true">{iniciales(p.data.nombre)}</span>
+            <h2 style="font-size:1.5rem;margin-bottom:2px">{p.data.nombre}</h2>
+            <p class="cargo">{p.data.cargo} · {p.data.especialidad}</p>
+            <p style="margin:0">{p.data.texto}</p>
+            <p class="colegiado">Nº de colegiado: [por completar]</p>
+          </article>
+        ))}
+      </div>
+      <p class="letra-pequena" style="margin-top:20px">Los nombres, cargos y números de colegiado de esta página son de ejemplo y los sustituye el cliente con los datos reales del equipo.</p>
+    </div>
+  </section>
+  <section class="cinta"><div class="contenedor"><h2>Conoce al equipo en tu primera visita.</h2><a class="btn btn--bosque" href="/cita/">Pedir cita</a></div></section>
+</Base>

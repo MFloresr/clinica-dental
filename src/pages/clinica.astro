@@ -1,0 +1,67 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import sillon from '../assets/fotos/sillon-clinica.jpg';
+import sala from '../assets/fotos/sala-tratamiento.jpg';
+import esteril from '../assets/fotos/esterilizacion.jpg';
+import infantil from '../assets/fotos/infantil-cartel.jpg';
+---
+
+<Base titulo="La clínica: instalaciones, higiene y accesibilidad" descripcion="Conoce las salas, el protocolo de esterilización, la zona infantil y la accesibilidad de la clínica.">
+  <div class="contenedor cabecera-pagina">
+    <h1>La clínica</h1>
+    <p>Un espacio pensado para que estés cómodo y para que todo lo que usamos esté limpio y preparado.</p>
+  </div>
+
+  <section class="seccion" style="padding-top:24px" aria-labelledby="t-salas">
+    <div class="contenedor dos">
+      <div class="foto-recta"><Image src={sillon} alt="Sala de tratamiento con sillón dental azul, lámpara y pantalla" widths={[500, 800, 1100]} sizes="(min-width: 900px) 45vw, 100vw" /></div>
+      <div>
+        <h2 id="t-salas">Salas de tratamiento</h2>
+        <p class="texto">Cada sala tiene su sillón, su lámpara y una pantalla en la que te enseñamos tus imágenes para que veas lo mismo que nosotros.</p>
+        <ul class="lista"><li>Pantalla para explicarte radiografías y fotos.</li><li>Luz natural en la sala de espera.</li><li>Un espacio tranquilo donde puedes preguntar sin prisa.</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca" aria-labelledby="t-higiene">
+    <div class="contenedor dos">
+      <div>
+        <h2 id="t-higiene">Esterilización y seguridad</h2>
+        <p class="texto">El instrumental reutilizable se limpia, se esteriliza y se guarda envasado hasta el momento de usarlo. Cuando es posible, usamos material desechable.</p>
+        <ul class="lista">
+          <li>Instrumental esterilizado y envasado en bolsas selladas.</li>
+          <li>Material de un solo uso cuando procede.</li>
+          <li>Superficies desinfectadas entre pacientes.</li>
+        </ul>
+      </div>
+      <div class="foto-recta"><Image src={esteril} alt="Instrumental dental esterilizado en bolsas selladas sobre una bandeja" widths={[500, 800, 1100]} sizes="(min-width: 900px) 45vw, 100vw" /></div>
+    </div>
+  </section>
+
+  <section class="seccion" aria-labelledby="t-ninos">
+    <div class="contenedor dos">
+      <div class="foto-recta"><Image src={infantil} alt="Pared de madera con un cartel infantil de dos niños en un columpio" widths={[500, 800]} sizes="(min-width: 900px) 45vw, 100vw" /></div>
+      <div>
+        <h2 id="t-ninos">Un rincón para los niños</h2>
+        <p class="texto">Las visitas infantiles son cortas y tranquilas. Enseñamos a los niños los instrumentos antes de usarlos, con lenguaje de su edad.</p>
+        <a class="btn btn--sec" href="/tratamientos/odontopediatria/">Odontopediatría</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--menta" aria-labelledby="t-acceso">
+    <div class="contenedor dos">
+      <div>
+        <h2 id="t-acceso">Accesibilidad</h2>
+        <p class="texto">Queremos que cualquiera pueda venir. Si tienes alguna necesidad especial, cuéntanoslo al pedir cita y lo preparamos.</p>
+        <ul class="lista">
+          <li>[El cliente indica aquí si hay ascensor, rampa o baño adaptado.]</li>
+          <li>Podemos adaptar el horario o la duración de la visita.</li>
+          <li>Puedes venir acompañado.</li>
+        </ul>
+      </div>
+      <div class="foto-recta"><Image src={sala} alt="Sala de tratamiento luminosa con un sillón dental junto a la ventana" widths={[400, 700]} sizes="(min-width: 900px) 35vw, 100vw" style="max-height:420px" /></div>
+    </div>
+  </section>
+</Base>

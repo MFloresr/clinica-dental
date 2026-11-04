@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import { sitio } from '../lib/sitio';
+const c = sitio.centro;
+---
+
+<Base titulo="Aviso legal" descripcion="Información legal del titular de la web y datos del centro sanitario." noindex>
+  <div class="contenedor cabecera-pagina"><h1>Aviso legal</h1></div>
+  <section class="seccion legal" style="padding-top:8px">
+    <div class="contenedor">
+      <p class="aviso aviso--demo" style="max-width:72ch">Plantilla de ejemplo. Los datos entre corchetes los rellena el cliente y el texto lo revisa su asesor antes de publicar. La publicidad de centros sanitarios está sujeta a normativa específica y puede requerir autorización previa.</p>
+      <h2>Titular de la web</h2>
+      <ul class="lista" style="max-width:72ch">
+        <li>Denominación social: {c.razonSocial}</li>
+        <li>NIF: {c.nif}</li>
+        <li>Domicilio: {c.domicilio}</li>
+        <li>Correo electrónico: {sitio.email}</li>
+        <li>Teléfono: {sitio.telefonoVisible}</li>
+      </ul>
+      <h2>Datos del centro sanitario</h2>
+      <ul class="lista" style="max-width:72ch">
+        <li>Autorización sanitaria: {c.autorizacion}</li>
+        <li>Dirección sanitaria: {c.director}</li>
+        <li>Colegio profesional: {c.colegio}</li>
+        <li>Seguro de responsabilidad civil: {c.seguroRC}</li>
+      </ul>
+      <h2>Información sanitaria</h2>
+      <p>Los contenidos de esta web, incluidas la guía de síntomas y los artículos del blog, son informativos y no constituyen un diagnóstico ni sustituyen la consulta con un profesional. Los resultados de los tratamientos pueden variar de una persona a otra. Los precios son orientativos y el presupuesto definitivo se entrega por escrito tras la valoración.</p>
+      <h2>Condiciones de uso</h2>
+      <p>El acceso y el uso de esta web atribuyen la condición de usuario e implican la aceptación de estas condiciones. El titular puede modificar los contenidos en cualquier momento.</p>
+      <h2>Propiedad intelectual</h2>
+      <p>Los textos, el diseño y el código de la web pertenecen a su titular o se usan con licencia. Las fotografías de terceros llevan su autoría y licencia en la página de <a class="enlace" href="/creditos/">créditos</a>.</p>
+      <h2>Legislación aplicable</h2>
+      <p>Estas condiciones se rigen por la legislación española. Para cualquier controversia, las partes se someten a los juzgados y tribunales que correspondan según la ley.</p>
+    </div>
+  </section>
+</Base>

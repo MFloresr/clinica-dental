@@ -1,0 +1,42 @@
+{
+  "orden": 6,
+  "nombre": "Blanqueamiento dental",
+  "area": "estetica",
+  "desde": 250,
+  "unidadPrecio": "tratamiento",
+  "foto": "../../assets/fotos/guia-tonos.jpg",
+  "fotoAlt": "Muestrario de tonos de dientes colgado de un anillo, usado para comparar el color",
+  "resumen": "Aclarar el color de tus dientes con productos y pautas supervisados por el dentista.",
+  "queEs": [
+    "El blanqueamiento aclara el tono de los dientes con un gel que se aplica de forma controlada. Para comparar el antes y el después, usamos un muestrario de tonos como el de la foto.",
+    "El resultado varía según cada persona y el origen de la mancha. Antes conviene una revisión y una limpieza, porque parte del color mejora solo con eso."
+  ],
+  "cuando": [
+    "Quieres un tono más claro y tus dientes y encías están sanos.",
+    "Tus dientes se han oscurecido con los años, el café o el tabaco."
+  ],
+  "pasos": [
+    {
+      "titulo": "Revisión y limpieza",
+      "texto": "Comprobamos que no hay caries ni problemas de encías."
+    },
+    {
+      "titulo": "Valoración del tono",
+      "texto": "Medimos tu tono de partida y hablamos de lo que esperas."
+    },
+    {
+      "titulo": "Aplicación",
+      "texto": "Aplicamos el gel en la clínica o preparamos férulas para usarlo en casa."
+    },
+    {
+      "titulo": "Control",
+      "texto": "Revisamos el resultado y te damos pautas para mantenerlo."
+    }
+  ],
+  "duracion": "Una sesión en clínica de unos 60 minutos, o varias noches con férulas.",
+  "cuidados": [
+    "Puede haber sensibilidad pasajera durante el tratamiento.",
+    "Evita café, té, vino tinto y tabaco los primeros días.",
+    "No es adecuado en embarazo ni en caries sin tratar: lo valoramos contigo."
+  ]
+}

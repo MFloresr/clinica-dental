@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { sitio } from '../lib/sitio';
+const c = sitio.centro;
+---
+
+<Base titulo="Política de privacidad" descripcion="Cómo tratamos tus datos personales y de salud cuando pides cita o nos escribes." noindex>
+  <div class="contenedor cabecera-pagina"><h1>Política de privacidad</h1></div>
+  <section class="seccion legal" style="padding-top:8px">
+    <div class="contenedor">
+      <p class="aviso aviso--demo" style="max-width:72ch">Plantilla de ejemplo. Al tratarse de datos de salud, el cliente y su asesor o delegado de protección de datos deben revisarla y completarla antes de publicar. Esta web, tal y como está, no se conecta a ningún sistema que guarde datos.</p>
+      <h2>Quién es el responsable</h2>
+      <p>{c.razonSocial}, con NIF {c.nif} y domicilio en {c.domicilio}. Contacto: <a class="enlace" href={`mailto:${sitio.email}`}>{sitio.email}</a>. Delegado de protección de datos: {c.dpd}</p>
+      <h2>Qué datos tratamos y para qué</h2>
+      <ul class="lista">
+        <li><strong>Solicitud de cita:</strong> nombre, teléfono, correo, tipo de visita, día y franja preferidos y, de forma voluntaria, un breve motivo. Los usamos para gestionar tu cita y contactar contigo.</li>
+        <li><strong>Formulario de contacto:</strong> nombre, correo y mensaje, para responder a tu consulta.</li>
+      </ul>
+      <h2>Datos de salud</h2>
+      <p>Para pedir cita no necesitas darnos datos de salud. Si decides escribir alguno en el campo de motivo, se considera dato de categoría especial y lo tratamos solo si nos das tu consentimiento explícito, que puedes retirar en cualquier momento. Te pedimos que no incluyas detalles clínicos en los formularios: los recogeremos, si hace falta, en la consulta, con las garantías que exige la normativa sanitaria.</p>
+      <h2>Base jurídica</h2>
+      <p>Tu consentimiento al marcar las casillas del formulario y la aplicación de medidas precontractuales a petición tuya, como una cita o una valoración. En el ámbito de la historia clínica, la normativa sanitaria de aplicación.</p>
+      <h2>Cuánto tiempo los guardamos</h2>
+      <p>Los datos de contacto y cita, el tiempo necesario para gestionarlos. La historia clínica, durante los plazos que fije la normativa sanitaria, que son como mínimo de cinco años desde el alta de cada proceso asistencial y pueden ser mayores según cada comunidad autónoma. [El cliente confirma los plazos.]</p>
+      <h2>A quién los comunicamos</h2>
+      <p>No cedemos tus datos a terceros salvo obligación legal o para prestarte el servicio que solicites, como una entidad aseguradora o financiera si tú lo pides. Usamos proveedores de alojamiento y de correo como encargados del tratamiento, con contrato. [Indicar proveedores y ubicación de los datos.]</p>
+      <h2>Tus derechos</h2>
+      <p>Puedes pedir el acceso, la rectificación, la supresión, la oposición, la limitación y la portabilidad de tus datos, y retirar tu consentimiento, escribiéndonos al correo de arriba. Si crees que no los tratamos bien, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
+    </div>
+  </section>
+</Base>

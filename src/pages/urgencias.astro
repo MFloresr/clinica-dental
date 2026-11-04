@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import Preguntas from '../components/Preguntas.astro';
+import { sitio } from '../lib/sitio';
+
+const casos = [
+  { titulo: 'Se ha caído un diente por un golpe', pasos: ['Cógelo por la corona (la parte blanca), nunca por la raíz.', 'Si está sucio, acláralo un momento con agua, sin frotar ni usar jabón.', 'Guárdalo en leche o en tu propia saliva. No lo envuelvas en seco.', 'Ven cuanto antes: lo ideal es en la primera hora.'] },
+  { titulo: 'Se ha roto un trozo de diente', pasos: ['Enjuágate con agua templada.', 'Guarda el fragmento, si lo tienes, en leche o en saliva.', 'Si sangra, presiona con una gasa limpia.', 'Llámanos para verlo cuanto antes.'] },
+  { titulo: 'Dolor de muela muy fuerte', pasos: ['Enjuágate con agua templada y limpia entre los dientes con cuidado.', 'Puedes tomar el analgésico que ya uses habitualmente, siguiendo las indicaciones del prospecto o de tu médico.', 'No pongas medicamentos directamente sobre la encía.', 'Llámanos para atenderte lo antes posible.'] },
+  { titulo: 'Cara hinchada, con o sin fiebre', pasos: ['Es una posible infección: necesita valoración el mismo día.', 'No te pongas calor en la zona ni tomes antibióticos por tu cuenta.', 'Si te cuesta tragar o respirar, llama al 112 o ve a urgencias hospitalarias.'] },
+  { titulo: 'Sangrado tras una extracción', pasos: ['Presiona con una gasa limpia o una compresa húmeda durante unos 20 minutos.', 'Mantén la cabeza elevada y evita enjuagarte con fuerza.', 'Si no cede, llámanos.'] },
+  { titulo: 'Se te ha caído una corona o un empaste', pasos: ['Guarda la pieza.', 'Evita masticar por ese lado y no uses pegamentos.', 'Pide cita pronto: el diente queda expuesto.'] },
+];
+---
+
+<Base titulo="Urgencias dentales: qué hacer y a quién llamar" descripcion="Qué hacer si se cae o se rompe un diente, si hay dolor fuerte o hinchazón. Teléfono de urgencias y pautas generales.">
+  <div class="contenedor cabecera-pagina">
+    <h1>Urgencias dentales</h1>
+    <p>Si tienes una urgencia, llama antes de venir para que te esperemos y te digamos cómo proceder.</p>
+  </div>
+
+  <section class="seccion" style="padding-top:24px">
+    <div class="contenedor">
+      <div class="urgencia-llamada">
+        <p style="margin:0;font-weight:700">Teléfono de urgencias</p>
+        <a class="tel num" href={`tel:${sitio.telefonoUrgencias}`}>{sitio.telefonoUrgenciasVisible}</a>
+        <p style="margin:0;max-width:62ch">Atendemos urgencias en el horario de la clínica. Fuera de horario, llama a este teléfono y te orientamos. Si tienes dificultad para respirar o tragar, o una hinchazón que avanza rápido, llama al <strong>112</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca" aria-labelledby="t-casos">
+    <div class="contenedor">
+      <div class="cabecera-seccion"><h2 id="t-casos">Qué hacer mientras llegas</h2><p>Pautas generales. Cada caso es distinto: si tienes dudas, llámanos.</p></div>
+      <div class="rejilla" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr))">
+        {casos.map((c) => (
+          <article class="trat" style="padding:22px">
+            <h3>{c.titulo}</h3>
+            <ul class="lista" style="margin:0">{c.pasos.map((p) => <li>{p}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+      <p class="aviso-medico" style="max-width:72ch;margin-top:24px">Estas indicaciones son informativas y no sustituyen la valoración de un profesional sanitario.</p>
+    </div>
+  </section>
+
+  <section class="seccion"><div class="contenedor"><Preguntas tema="urgencias" titulo="Sobre las urgencias" /></div></section>
+</Base>
